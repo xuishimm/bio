@@ -1,330 +1,270 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<title>Bio</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<style>
-		@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>oofer.lat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-		:root{
-			--shape-min: 18px;
-			--shape-max: 48px;
-			--shape-count: 60;  
-		}
+    :root {
+      --shape-min: 18px;
+      --shape-max: 48px;
+      --shape-count: 60;
+    }
 
-		html,body{height:100%;}
-		body {
-			margin: 0;
-			font-family: 'Poppins', sans-serif;
-			background: #000;
-			overflow: hidden;
-			color: #fff;
-		}
+    html, body {
+      height: 100%;
+    }
 
-		
-		.shapes-layer{
-			position: fixed;
-			inset: 0;
-			pointer-events: none;
-			z-index: 1;
-			overflow: hidden;
-		}
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #000;
+      overflow: hidden;
+      color: #fff;
+    }
 
-		.shape {
-			position: absolute;
-			top: -150px; 
-			width: 24px;
-			height: 24px;
-			background: rgba(255, 255, 255, 0.12);
-			animation: fall linear infinite;
-			transform: rotate(45deg);
-			border-radius: 6px;
-			box-shadow: 0 4px 18px rgba(255,255,255,0.03);
-			backdrop-filter: blur(0.5px);
-		}
+    #enterScreen {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      cursor: pointer;
+      transition: opacity 0.5s ease;
+    }
 
-		@keyframes fall {
-			to {
-				transform: translateY(120vh) rotate(360deg);
-			}
-		}
+    #enterScreen.fade {
+      opacity: 0;
+    }
 
-		
-		.panel-wrap{
-			position: relative;
-			z-index: 10;
-			min-height: 100vh;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			padding: 40px 24px;
-		}
+    .enterText {
+      font-size: 2rem;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.85);
+    }
 
-		.panel {
-			width: 86vw;           
-			max-width: 1200px;
-			height: 72vh;         
-			border-radius: 28px;
-			background: rgba(255,255,255,0.03);
-			border: 1px solid rgba(255,255,255,0.04);
-			box-shadow: 0 10px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: flex-start;
-			padding: 48px 32px;
-			backdrop-filter: blur(8px) saturate(120%);
-			gap: 18px;
-		}
+    .shapes-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
 
-		.center {
-			text-align: center;
-			margin-top: 20px;
-			position: relative;
-			z-index: 12;
-			color: #fff;
-		}
+    .shape {
+      position: absolute;
+      top: -150px;
+      background: rgba(255,255,255,0.12);
+      animation: fall linear infinite;
+      transform: rotate(45deg);
+      border-radius: 6px;
+      box-shadow: 0 4px 18px rgba(255,255,255,0.03);
+    }
 
-		h1 {
-			font-size: 3.2rem;
-			font-weight: 600;
-			margin: 0;
-		}
+    @keyframes fall {
+      to {
+        transform: translateY(120vh) rotate(360deg);
+      }
+    }
 
-		.search-box {
-			margin-top: 30px;
-		}
+    .panel-wrap {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+    }
 
-		.search-box input {
-			width: 520px; 
-			max-width: 86%;
-			padding: 18px;
-			border-radius: 60px;
-			border: 2px solid rgba(0, 0, 0, 0.6);
-			font-size: 1.1rem;
-			text-align: center;
-			background: rgba(255, 255, 255, 0.08);
-			color: #fff;
-			outline: none;
-			transition: 0.3s;
-			box-shadow: 0 8px 30px rgba(255, 255, 255, 0.03);
-		}
+    .panel {
+      width: 86vw;
+      max-width: 1200px;
+      height: 72vh;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 10px 60px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 32px;
+      backdrop-filter: blur(8px);
+      gap: 18px;
+    }
 
-		.search-box input:focus {
-			border-color: rgba(255,255,255,0.12);
-		}
+    .center {
+      text-align: center;
+      margin-top: 20px;
+    }
 
-		.icons {
-			margin-top: 16px;
-			display: flex;
-			justify-content: center;
-			gap: 12px;
-		}
+    h1 {
+      font-size: 3.2rem;
+      font-weight: 600;
+      margin: 0;
+    }
 
-		.icons img {
-			width: 40px;
-			height: 40px;
-			border-radius: 8px;
-			transition: 0.25s;
-			cursor: pointer;
-		}
+    p {
+      max-width: 700px;
+      margin: 8px auto;
+      opacity: 0.9;
+    }
 
-		.icons img:hover {
-			transform: scale(1.08);
-			filter: brightness(1.25);
-		}
+    .friends-section,
+    .links-section {
+      margin-top: 28px;
+    }
 
-		.bottom-bar {
-			position: fixed;
-			bottom: 20px;
-			left: 50%;
-			transform: translateX(-50%);
-			background: rgba(255, 255, 255, 0.03);
-			padding: 12px 25px;
-			border-radius: 20px;
-			display: flex;
-			gap: 25px;
-			backdrop-filter: blur(10px);
-			z-index: 15;
-		}
+    .friends-title,
+    .links-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+      opacity: 0.8;
+    }
 
-		.bottom-bar img {
-			width: 36px;
-			height: 36px;
-			filter: invert(1);
-			opacity: 0.9;
-			cursor: pointer;
-			transition: 0.25s;
-		}
+    .friends-buttons,
+    .links-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
-		.bottom-bar img:hover {
-			transform: scale(1.15);
-			opacity: 1;
-		}
+    .friend-btn,
+    .link-btn {
+      padding: 10px 20px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.25s;
+    }
 
-		.friends-section {
-			margin-top: 28px;
-		}
+    .friend-btn:hover,
+    .link-btn:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.4);
+      transform: translateY(-2px);
+    }
 
-		.friends-title {
-			font-size: 1.1rem;
-			font-weight: 600;
-			margin-bottom: 14px;
-			color: rgba(255, 255, 255, 0.8);
-			letter-spacing: 0.5px;
-		}
+    .icons {
+      margin-top: 16px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
 
-		.friends-buttons {
-			display: flex;
-			gap: 12px;
-			justify-content: center;
-			flex-wrap: wrap;
-		}
+    .icons img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.25s;
+    }
 
-		.friend-btn {
-			padding: 10px 20px;
-			border: 1.5px solid rgba(255, 255, 255, 0.2);
-			border-radius: 12px;
-			background: rgba(255, 255, 255, 0.05);
-			color: #fff;
-			font-family: 'Poppins', sans-serif;
-			font-size: 0.95rem;
-			font-weight: 500;
-			cursor: pointer;
-			transition: 0.25s;
-			text-decoration: none;
-			display: inline-block;
-		}
+    .icons img:hover {
+      transform: scale(1.08);
+      filter: brightness(1.2);
+    }
 
-		.friend-btn:hover {
-			background: rgba(255, 255, 255, 0.12);
-			border-color: rgba(255, 255, 255, 0.4);
-			transform: translateY(-2px);
-			box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
-		}
+    @media (max-width: 720px) {
+      .panel {
+        width: 94vw;
+        height: 78vh;
+        padding: 28px;
+      }
 
-		.links-section {
-			margin-top: 28px;
-		}
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
 
-		.links-title {
-			font-size: 1.1rem;
-			font-weight: 600;
-			margin-bottom: 14px;
-			color: rgba(255, 255, 255, 0.8);
-			letter-spacing: 0.5px;
-		}
+<div id="enterScreen">
+  <div class="enterText">click to enter</div>
+</div>
 
-		.links-buttons {
-			display: flex;
-			gap: 12px;
-			justify-content: center;
-			flex-wrap: wrap;
-		}
+<audio id="music" src="tyler.mp3" loop></audio>
 
-		.link-btn {
-			padding: 10px 20px;
-			border: 1.5px solid rgba(255, 255, 255, 0.2);
-			border-radius: 12px;
-			background: rgba(255, 255, 255, 0.05);
-			color: #fff;
-			font-family: 'Poppins', sans-serif;
-			font-size: 0.95rem;
-			font-weight: 500;
-			cursor: pointer;
-			transition: 0.25s;
-			text-decoration: none;
-			display: inline-block;
-		}
+<div class="shapes-layer" id="shapes"></div>
 
-		.link-btn:hover {
-			background: rgba(255, 255, 255, 0.12);
-			border-color: rgba(255, 255, 255, 0.4);
-			transform: translateY(-2px);
-			box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
-		}
+<main class="panel-wrap">
+  <section class="panel">
+    <div class="center">
+      <h1>ooferhasaSR</h1>
 
-		
-		@media (max-width:720px){
-			.panel{ width:94vw; height:78vh; padding:28px; }
-			h1{ font-size:2rem }
-			.search-box input{ width:92% }
-		}
-		</style>
-	</head>
-	<body>
-		<div class="shapes-layer" id="shapes"></div>
+      <p>hi, im oofer and i can code html and css</p>
+      <p>i make sparta remixes and im in the process of trying to learn fl studio</p>
+	  <p>i like games like roblox, minecraft, phasmophobia, geometry dash, portal 1 and 2, and industrial games</p>
+      <p>some projects im working on or apart of are dxzvy's sanctuary, webauth.win, and endis</p>
 
-		<main class="panel-wrap">
-			<section class="panel">
-				<div class="center">
-					<h1>oofer/cixot</h1>
+      <div class="friends-section">
+        <div class="friends-title">Friends</div>
+        <div class="friends-buttons">
+          <a href="https://ajh.wtf/" class="friend-btn" target="_blank">ajh</a>
+          <a href="https://qatual.com/" class="friend-btn" target="_blank">qatual</a>
+          <a href="https://guns.lol/endis/" class="friend-btn" target="_blank">endis</a>
+        </div>
+      </div>
 
-				<div>
-                    <p>Hi, im oofer/victor and i can code html, ccs and im in the process of learning js</p>
-                    <p>I like games like roblox, minecraft, phasmaphobia, supermarket together, portal 1 and 2 and industrial games</p>
-                    <p>Some projects im working on/apart of is dxzvy's sanctuary, webauth.win, and endis</p>
-                    <div class="friends-section">
-                        <div class="friends-title">Friends</div>
-                        <div class="friends-buttons">
-                            <a href="https://ajh.wtf/" class="friend-btn" target="_blank">ajh</a>
-                            <a href="https://qatual.com/" class="friend-btn" target="_blank">qatual</a>
-                            <a href="https://guns.lol/endis/" class="friend-btn" target="_blank">endis</a>
-                            <a href="https://whatudoing.wtf/" class="friend-btn" target="_blank">whatu</a>
-                        </div>
-                    </div>
-                    <div class="links-section">
-                        <div class="links-title">Links</div>
-                        <div class="links-buttons">
-                            <a href="https://educationalpurposes.site/" class="link-btn" target="_blank">ubg</a>
-                            <a href="https://tiktok.com/@oofer.lat/" class="link-btn" target="_blank">tiktok</a>
-                            <a href="https://www.roblox.com/users/1837088209/profile" class="link-btn" target="_blank">roblox</a>
-                        </div>
-                    </div>
-                    <div class="icons">
-                        <img src="icons/html.svg" alt="html">
-                        <img src="icons/css.svg" alt="css">
-                        <img src="icons/js.svg" alt="js">
-                    </div>
-                </div>
-				</div>
-				</div>
-			</section>
-		</main>
+      <div class="links-section">
+        <div class="links-title">Links</div>
+        <div class="links-buttons">
+          <a href="https://educationalpurposes.site/" class="link-btn" target="_blank">ubg</a>
+          <a href="https://tiktok.com/@oofer.lat/" class="link-btn" target="_blank">tiktok</a>
+          <a href="https://www.roblox.com/users/1837088209/profile" class="link-btn" target="_blank">roblox</a>
+        </div>
+      </div>
 
-		
+      <div class="icons">
+        <img src="icons/html.svg">
+        <img src="icons/css.svg">
+        <img src="icons/js.svg">
+      </div>
+    </div>
+  </section>
+</main>
 
-		<script>
-		
-		(function(){
-			const container = document.getElementById('shapes');
-			const count = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--shape-count')) || 50;
-			const min = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--shape-min')) || 14;
-			const max = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--shape-max')) || 48;
+<script>
+  const shapes = document.getElementById("shapes");
+  const count = 60;
 
-			function rand(minv, maxv){ return Math.random()*(maxv-minv)+minv }
+  for (let i = 0; i < count; i++) {
+    const s = document.createElement("div");
+    s.className = "shape";
+    const size = Math.random() * 30 + 18;
+    s.style.width = size + "px";
+    s.style.height = size + "px";
+    s.style.left = Math.random() * 110 - 5 + "%";
+    s.style.opacity = Math.random() * 0.16 + 0.06;
+    const duration = Math.random() * 18 + 8;
+    s.style.animationDuration = duration + "s";
+    s.style.animationDelay = "-" + Math.random() * duration + "s";
+    shapes.appendChild(s);
+  }
 
-			for(let i=0;i<count;i++){
-				const el = document.createElement('div');
-				el.className = 'shape';
-				const size = Math.floor(rand(min, max));
-				el.style.width = size + 'px';
-				el.style.height = size + 'px';
-				el.style.left = Math.floor(rand(-8, 108)) + '%';
-				el.style.opacity = rand(0.06, 0.22).toFixed(2);
-				const duration = rand(8, 26).toFixed(2);
-				el.style.animationDuration = duration + 's';
-				el.style.animationDelay = '-' + rand(0, duration).toFixed(2) + 's';
-				
-				const tint = Math.floor(rand(180,255));
-				el.style.background = `rgba(${tint}, ${tint}, 255, ${el.style.opacity})`;
-				container.appendChild(el);
-			}//a
-		})();
-		</script>
-	</body>
+  const enterScreen = document.getElementById("enterScreen");
+  const music = document.getElementById("music");
+
+  enterScreen.addEventListener("click", () => {
+    enterScreen.classList.add("fade");
+    music.play();
+    setTimeout(() => enterScreen.remove(), 500);
+  });
+</script>
+
+</body>
 </html>
-
